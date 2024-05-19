@@ -23,10 +23,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import com.example.jetpackcompose.R
+import com.example.jetpackcompose.models.Quote
 
 
 @Composable
-fun QuotesDetails() {
+fun QuotesDetails(quote: Quote) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -59,10 +60,10 @@ fun QuotesDetails() {
                         .size(80.dp)
                 )
 
-                Text(text = "Time is the most valuable thing a man can spend.")
+                Text(text = quote.quote)
 
                 Spacer(Modifier.height(16.dp))
-                Text(text = "Theophrastus",
+                Text(text = quote.author,
                     fontFamily = FontFamily.Cursive,
                     style = MaterialTheme.typography.titleSmall)
 

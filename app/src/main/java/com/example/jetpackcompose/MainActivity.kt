@@ -1,6 +1,7 @@
 package com.example.jetpackcompose
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,11 +11,15 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.jetpackcompose.screens.QuoteListScreen
 import com.example.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        DataManager.loadAssetsFromFile(this)
+
         setContent {
             JetpackComposeTheme {
                 // A surface container using the 'background' color from the theme
@@ -22,7 +27,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    App()
                 }
             }
         }
@@ -30,17 +35,14 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+fun App(){
 
+    Log.d("CheckingData",DataManager.isDataLoaded.toString()+" "+DataManager.data.toString())
 
-@Composable
-fun GreetingPreview() {
-    JetpackComposeTheme {
-        Greeting("Android")
+    if(DataManager.isDataLoaded.value){
+        QuoteListScreen(data = DataManager.data) {
+
+        }
     }
+
 }

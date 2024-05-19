@@ -20,22 +20,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetpackcompose.R
+import com.example.jetpackcompose.models.Quote
 
-@Preview
-@Composable
-fun PreviewFunction() {
-    QuotesLayout()
-}
+
 
 @Composable
-fun QuotesLayout() {
+fun QuotesLayout(quote:Quote, onCLick:()->Unit) {
 
     Card(
         elevation = CardDefaults.cardElevation(10.dp),
-
+        modifier = Modifier.padding(top = 10.dp)
         ) {
 
         Row(modifier = Modifier.padding(10.dp)) {
@@ -49,7 +45,7 @@ fun QuotesLayout() {
             Spacer(modifier = Modifier.padding(4.dp))
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "Time is the most valuable thing a man can spend ",
+                    text = quote.quote,
                     style = MaterialTheme.typography.bodyLarge
                 )
 
@@ -61,7 +57,7 @@ fun QuotesLayout() {
 
                 )
                 Text(
-                    text = "Theophrastus",
+                    text = quote.author,
                     style = MaterialTheme.typography.bodySmall,
                     fontWeight = FontWeight.Thin,
                     modifier = Modifier.padding(top = 4.dp)
