@@ -3,6 +3,7 @@ package com.example.jetpackcompose.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,11 +28,13 @@ import com.example.jetpackcompose.models.Quote
 
 
 @Composable
-fun QuotesLayout(quote:Quote, onCLick:()->Unit) {
+fun QuotesLayout(quote:Quote, onCLick:(quote:Quote)->Unit) {
 
     Card(
         elevation = CardDefaults.cardElevation(10.dp),
-        modifier = Modifier.padding(top = 10.dp)
+        modifier = Modifier
+            .clickable { onCLick(quote) }
+            .padding(top = 10.dp)
         ) {
 
         Row(modifier = Modifier.padding(10.dp)) {

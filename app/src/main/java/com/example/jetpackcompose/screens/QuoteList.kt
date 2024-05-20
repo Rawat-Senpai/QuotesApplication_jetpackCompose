@@ -6,13 +6,11 @@ import androidx.compose.runtime.Composable
 import com.example.jetpackcompose.models.Quote
 
 @Composable
-fun QuoteList(data:Array<Quote>, onClick:()->Unit){
+fun QuoteList(data:Array<Quote>, onClick:(quote:Quote)->Unit){
 
     LazyColumn(content =  {
       items(data){
-        QuotesLayout(quote = it){
-            onClick()
-        }
+        QuotesLayout(quote = it, onClick )
       }
     })
 

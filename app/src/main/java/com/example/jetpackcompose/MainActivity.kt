@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.jetpackcompose.screens.QuoteListScreen
+import com.example.jetpackcompose.screens.QuotesDetails
 import com.example.jetpackcompose.ui.theme.JetpackComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -40,9 +41,20 @@ fun App(){
     Log.d("CheckingData",DataManager.isDataLoaded.toString()+" "+DataManager.data.toString())
 
     if(DataManager.isDataLoaded.value){
-        QuoteListScreen(data = DataManager.data) {
-
+        if(DataManager.currentPage.value == Pages.LISTING){
+            QuoteListScreen(data = DataManager.data) {
+                DataManager.switchPages(it)
+            }
+        }else{
+            DataManager.currentQuote?.let { QuotesDetails(quote = it) }
         }
+    
     }
 
+}
+
+
+enum class Pages{
+    LISTING,
+    DETAILS
 }
