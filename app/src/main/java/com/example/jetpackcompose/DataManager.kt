@@ -25,7 +25,7 @@ object DataManager {
         data = gson.fromJson(json,Array<Quote>::class.java)
         isDataLoaded.value= true
     }
-
+ 
     fun switchPages(quote:Quote?){
         if (currentPage.value == Pages.LISTING){
             currentQuote = quote
